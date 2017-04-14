@@ -7,7 +7,15 @@ class Login extends CI_Controller{
 
 
 	public function index(){
-		$this->load->view('login2.html');
+		$datos['error']="";
+		$datos['action']="Login/login_process";
+		$this->load->view('login2.html',$datos);
+	}
+
+	public function error(){
+		$datos['error'] = "Usuario y Contraseña Incorrectos";
+		$datos['action']="login_process";
+		$this->load->view('login2.html',$datos);
 	}
 
 	public function login_process(){
@@ -32,11 +40,10 @@ class Login extends CI_Controller{
 			
 		redirect('Login/administracion');
 		}else{
-			redirect('Login');
+			
+			redirect('Login/error');
 		}
 
-		
-		
 	 }
 
 	 public function administracion(){

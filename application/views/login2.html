@@ -8,7 +8,19 @@
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
 
     <style type="text/css">
-        
+     .info, .success, .warning, .error, .validation {
+border: 1px solid;
+margin: 10px 0px;
+padding:15px 10px 15px 50px;
+background-repeat: no-repeat;
+background-position: 10px center;
+}
+
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+}
+
 .login2background{    
     background-image: url(http://huelvared.com/wp-content/uploads/2016/10/agricultura.jpg);
     background-repeat:no-repeat;
@@ -78,12 +90,12 @@
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
                         <img src="https://s4.postimg.org/64q1bgunx/logo_3.png" alt="Logo" class="logo"> 
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6  ">
-                    Ingresar</div>
+                    
                                  
                 </div>
 
-<form class="form-horizontal" role="form" method="post" action="Login/login_process"> 
+<form class="form-horizontal" role="form" method="post" action="<?php echo $action ?>"
+    > 
     <div class="form-group">
         <label for="name" class="col-sm-2 control-label">Usuario</label>
         <div class="col-sm-10">
@@ -105,7 +117,10 @@
     </div>
     <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
-            <! Will be used to display an alert to the user>
+            <span></span>
+            <?php if($error != ''){?>
+            <div class="error"><?php echo $error ?></div>
+            <?php } ?>
         </div>
     </div>
 </form>
