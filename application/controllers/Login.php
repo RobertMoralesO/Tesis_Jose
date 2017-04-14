@@ -48,7 +48,7 @@ class Login extends CI_Controller{
 
 	 public function administracion(){
 	 	if($this->session->userdata('logueado')){
-         $this->load->view('admin.html');
+         $this->load->view('admin2.html');
       }else{
          redirect('Login');
       }
