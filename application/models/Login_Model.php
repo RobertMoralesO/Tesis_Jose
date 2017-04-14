@@ -16,5 +16,15 @@ class Login_Model extends CI_Model{
 			return false;
 		}
 	}
+
+
+	public function informacion_usuario($data){
+      $this->db->select('id, nombre_completo');
+      $this->db->from('usuarios');
+      $this->db->where('usuario', $data['usuario']);
+      $consulta = $this->db->get();
+      $resultado = $consulta->row();
+      return $resultado;
+   }
 }
 ?>
