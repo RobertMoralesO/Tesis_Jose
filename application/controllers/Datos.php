@@ -25,7 +25,7 @@ class Datos extends CI_Controller{
 		$hora = $data['values'][8]['time'];
 		//$id_usuario=2;
 		$id_usuario=$data['values'][9]['id_usuario'];
-		$humedad = $this->DM->last_humedad($id_usuario);
+		$humedad = $this->DM->last_humedad_python($id_usuario);
 
 		$temperatura = $temperatura/100;
 		$bateria = $bateria/1000;
@@ -55,6 +55,12 @@ class Datos extends CI_Controller{
 		$insert = $this->DM->save($data);
 
 
+	}
+
+	public function exportar_datos($id)
+	{
+		$this->load->model('Datos_Model','DM');
+		to_excel($this->DM->exportar_datos(), "datos");
 	}
 
 	
