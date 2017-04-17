@@ -27,7 +27,7 @@ class Login extends CI_Controller{
 		$result = $this->LM->login($data);
 		if($result){
 
-			$this->load->model('Login_Model', 'LM', true);
+			
 		    $usuario = $this->LM->informacion_usuario($data);
 			$usuario_data = array(
 					'id'=> $usuario->id,
@@ -38,7 +38,7 @@ class Login extends CI_Controller{
 
 			$this->session->set_userdata($usuario_data);
 			
-		redirect('Login/administracion');
+		redirect('GraficasUltimosDatos');
 		}else{
 			
 			redirect('Login/error');
@@ -46,13 +46,7 @@ class Login extends CI_Controller{
 
 	 }
 
-	 public function administracion(){
-	 	if($this->session->userdata('logueado')){
-         $this->load->view('admin2.html');
-      }else{
-         redirect('Login');
-      }
-	 }
+	
 
 	 public function logout(){
 	 	$usuario_data = array(

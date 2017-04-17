@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Principal</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link href="<?php echo base_url('admin/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link href="<?php echo base_url('admin/dist/css/AdminLTE.min.css')?>" rel="stylesheet">
+ 
+  
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+ <link href="<?php echo base_url('admin/dist/css/skins/_all-skins.min.css')?>" rel="stylesheet">
+  
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="GraficasUltimosDatos" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>A</b>LT</span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>Admin</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          
+         
+          
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+              <img src="<?php echo base_url('admin/dist/img/user2-160x160.jpg')?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $this->session->userdata('nombre_completo')?></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="<?php echo base_url('admin/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
+
+                <p>
+                 <?php echo $this->session->userdata('nombre_completo')?>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="Login/logout" class="btn btn-default btn-flat">Salir</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+
+          <img src=" <?php echo base_url('admin/dist/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p><?php echo $this->session->userdata('nombre_completo')?></p>
+        
+        </div>
+      </div>
+  
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        <li class="header">MENÚ</li>
+       
+        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Gráficas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="GraficasUltimosDatos"><i class="fa fa-circle-o"></i> Últimos datos</a></li>
+            <li><a href="GraficasTiempoReal"><i class="fa fa-circle-o"></i> En tiempo real</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="../widgets.html">
+            <i class="fa fa-th"></i> <span>Datos</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="header">SALIR</li>
+        <li><a href="Login/logout"><i class="fa fa-circle-o text-red"></i> <span>Salir</span></a></li> 
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Gráficas
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="GraficasUltimosDatos"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Gráficas tiempo Real</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- interactive chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">Temperatura del suelo (ºC)</h3>
+
+              <div class="box-tools pull-right">
+                Tiempo Real
+                <div class="btn-group" id="realtime2" data-toggle="btn-toggle">
+                  <button type="button" class="btn btn-default btn-xs" data-toggle="on">On</button>
+                  <button type="button" class="btn btn-default btn-xs active" data-toggle="off">Off</button>
+                </div>
+              </div>
+            </div>
+            <div class="box-body">
+              <div id="interactive" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+          <!-- /.box -->
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- interactive chart -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <i class="fa fa-bar-chart-o"></i>
+
+              <h3 class="box-title">Humedad del suelo (%)</h3>
+
+              <div class="box-tools pull-right">
+                Real time
+                <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                  <button type="button" class="btn btn-default btn-xs " data-toggle="on">On</button>
+                  <button type="button" class="btn btn-default btn-xs active" data-toggle="off">Off</button>
+                </div>
+              </div>
+            </div>
+            <div class="box-body">
+              <div id="interactive2" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body-->
+          </div>
+          <!-- /.box -->
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+
+   
+    </section>
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1.0.0
+    </div>
+    <strong>Copyright &copy; 2017 Jose Gregorio Caicedo Ortiz.</strong> Todos los derechos reservados
+  </footer>
+
+  
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+
+<script src="<?php echo base_url('admin/plugins/jQuery/jquery-2.2.3.min.js')?>"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="<?php echo base_url('admin/bootstrap/js/bootstrap.min.js')?>"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url('admin/plugins/fastclick/fastclick.js')?>"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url('admin/dist/js/app.min.js')?>"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url('admin/dist/js/demo.js')?>"></script>
+<!-- FLOT CHARTS -->
+
+<script src="<?php echo base_url('admin/plugins/flot/jquery.flot.min.js')?>"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="<?php echo base_url('admin/plugins/chartjs/Chart.min.js')?>"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="<?php echo base_url('admin/plugins/flot/jquery.flot.resize.min.js')?>"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="<?php echo base_url('admin/plugins/flot/jquery.flot.pie.min.js')?>"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="<?php echo base_url('admin//plugins/flot/jquery.flot.categories.min.js')?>"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    /*
+     * Flot Interactive Chart
+     * -----------------------
+     */
+    // We use an inline data source in the example, usually data would
+    // be fetched from a server
+    var data = [];
+
+
+function print_r(printthis, returnoutput) {
+    var output = '';
+
+    if($.isArray(printthis) || typeof(printthis) == 'object') {
+        for(var i in printthis) {
+            output += i + ' : ' + print_r(printthis[i], true) + '\n';
+        }
+    }else {
+        output += printthis;
+    }
+    if(returnoutput && returnoutput == true) {
+        return output;
+    }else {
+        alert(output);
+    }
+}
+
+    function getHumedadData() {
+
+if (data.length > 0){
+ data = data.slice(1);
+     $.ajax({
+                            url: "<?php echo site_url('GraficasTiempoReal/get_last_humedad/') ?>/"+1,
+                            type: "GET",
+                            dataType: "JSON",
+                            success: function(dat)
+                            {
+                                data.push(dat);
+                               
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert('Error get data from ajax');
+                            }
+                     });
+  
+ 
+}else{
+
+      data_aux = <?php echo json_encode($humedad_suelo_tiempo_real)?>
+
+      for (var i = 0; i < data_aux.length; ++i) {
+        data.push(data_aux[i]['humedad_suelo']);
+        
+      }
+    } 
+
+    var res = [];
+      for (var i = 0; i < data.length; ++i) {
+        res.push([i, data[i]]);
+      }
+
+      return res;
+    }
+
+    var interactive_plot = $.plot("#interactive2", [getHumedadData()], {
+      grid: {
+        borderColor: "#f3f3f3",
+        borderWidth: 1,
+        tickColor: "#f3f3f3"
+      },
+      series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color: "#3c8dbc"
+      },
+      lines: {
+        fill: true, //Converts the line chart to area chart
+        color: "#3c8dbc"
+      },
+      yaxis: {
+        min: 0,
+        max: 50,
+        show: true
+      },
+      xaxis: {
+        show: false
+      }
+    });
+
+    var updateInterval = 500; //Fetch data ever x milliseconds
+    var realtime = "off"; //If == to on then fetch data every x seconds. else stop fetching
+    function update() {
+
+      interactive_plot.setData([getHumedadData()]);
+
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+      interactive_plot.draw();
+      if (realtime === "on")
+        setTimeout(update, updateInterval);
+    }
+
+    //INITIALIZE REALTIME DATA FETCHING
+    if (realtime === "on") {
+      update();
+    }
+    //REALTIME TOGGLE
+    $("#realtime .btn").click(function () {
+      if ($(this).data("toggle") === "on") {
+        realtime = "on";
+      }
+      else {
+        realtime = "off";
+      }
+      update();
+    });
+    /*
+     * END INTERACTIVE CHART
+     */
+
+
+
+//TEMPERATURA
+var data2=[];
+
+function getTemperaturaData() {
+
+if (data2.length > 0){
+ data2 = data2.slice(1);
+     $.ajax({
+                            url: "<?php echo site_url('GraficasTiempoReal/get_last_temperatura/') ?>/"+1,
+                            type: "GET",
+                            dataType: "JSON",
+                            success: function(dat)
+                            {
+                                data2.push(dat);
+                               
+                            },
+                            error: function(jqXHR, textStatus, errorThrown)
+                            {
+                                alert('Error get data from ajax');
+                            }
+                     });
+  
+ 
+}else{
+
+      data_aux = <?php echo json_encode($temperatura_suelo_tiempo_real)?>
+
+      for (var i = 0; i < data_aux.length; ++i) {
+        data2.push(data_aux[i]['temperatura_suelo']);
+        
+      }
+    } 
+
+    var res = [];
+      for (var i = 0; i < data2.length; ++i) {
+        res.push([i, data2[i]]);
+      }
+
+      return res;
+    }
+
+    var interactive_plot2 = $.plot("#interactive", [getTemperaturaData()], {
+
+
+      grid: {
+        borderColor: "#f3f3f3",
+        borderWidth: 1,
+        tickColor: "#f3f3f3"
+      },
+      series: {
+        shadowSize: 0, // Drawing is faster without shadows
+        color: "#3c8dbc"
+      },
+      lines: {
+        fill: true, //Converts the line chart to area chart
+        color: "#3c8dbc"
+      },
+      yaxis: {
+        min: 0,
+        max: 50,
+        show: true
+      },
+      xaxis: {
+        show: false,
+        data:[1,2,3]
+      }
+    });
+
+    var updateInterval = 500; //Fetch data ever x milliseconds
+    var realtime2 = "off"; //If == to on then fetch data every x seconds. else stop fetching
+    function update2() {
+
+      interactive_plot2.setData([getTemperaturaData()]);
+
+      // Since the axes don't change, we don't need to call plot.setupGrid()
+      interactive_plot2.draw();
+      if (realtime2 === "on")
+        setTimeout(update2, updateInterval);
+    }
+
+    //INITIALIZE REALTIME DATA FETCHING
+    if (realtime2 === "on") {
+      update2();
+    }
+    //REALTIME TOGGLE
+    $("#realtime2 .btn").click(function () {
+      if ($(this).data("toggle") === "on") {
+        realtime2 = "on";
+      }
+      else {
+        realtime2 = "off";
+      }
+      update2();
+    });
+    /*
+     * END INTERACTIVE CHART
+     */
+
+
+
+
+
+
+
+
+  
+
+
+   
+
+    
+
+  });
+
+  /*
+   * Custom Label formatter
+   * ----------------------
+   */
+  function labelFormatter(label, series) {
+    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
+        + label
+        + "<br>"
+        + Math.round(series.percent) + "%</div>";
+  }
+</script>
+</body>
+</html>

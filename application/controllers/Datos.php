@@ -7,21 +7,12 @@ class Datos extends CI_Controller{
 
    
 	public function index(){
-		/*$data = array(
-			'da' => $this->input->post('temperatura_suelo')
-			
-		);
-
-		$this->load->model('Datos_Model','DM');
-		$insert = $this->DM->save($data);
-		*/
-
+		
 		$data = $this->input->post('data');
 		/*$data = '{"values":[{"key": "id", "value": 2},{"key": "counter", "value": 1024},{"key": "temperature", "value": 3329},{"key": "x_axis", "value": -9},{"key": "y_axis", "value": 253},{"key": "z_axis", "value": 1},{"key": "battery", "value": 3066},{"date":"04/14/2017"},{"time":"15:47:16"}]}';
 */
 		$this->load->model('Datos_Model','DM');
 
-		//$data = $this->input->post('data');
 		$data = json_decode($data,true);
 
 		$id_mota = $data['values'][0]['value'];
@@ -65,6 +56,8 @@ class Datos extends CI_Controller{
 
 
 	}
+
+	
 
 	
 
