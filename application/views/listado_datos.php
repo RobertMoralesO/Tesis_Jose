@@ -81,7 +81,7 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-right">
-                                            <a href="logout" class="btn btn-default btn-flat">Salir</a>
+                                            <a href="Login/logout" class="btn btn-default btn-flat">Salir</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -157,7 +157,7 @@
 
                     
                     <br />
-                    <button class="btn btn-primary" onclick="exportar_datos()"><i class="glyphicon glyphicon-plus"></i> Descargar datos</button>
+                    <button class="btn btn-primary" onclick="descargar()"><i class="glyphicon glyphicon-plus"></i> Descargar datos</button>
                     <button class="btn btn-default" onclick="reload_table()"><i class="glyphicon glyphicon-refresh"></i> Recargar</button>
                     <br />
                     <br />
@@ -258,23 +258,11 @@
                         table.ajax.reload(null, false); //reload datatable ajax 
                     }
 
-                   
-                    function exportar_datos(){
-                        $.ajax({
-                             url: "<?php echo site_url('home/exportar_datos') ?>/"+1,
-                            type: "GET",
-                            dataType: "JSON",
-                            success: function(dat)
-                            {
-                                
-                               
-                            },
-                            error: function(jqXHR, textStatus, errorThrown)
-                            {
-                                alert('Error get data from ajax');
-                            }
-                     });
+                    function descargar(){
+                         location.href= "<?php echo site_url('Datos/exportar_datos') ?>";
                     }
+
+
                     
 
         </script>

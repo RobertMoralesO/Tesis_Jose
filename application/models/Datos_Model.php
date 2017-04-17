@@ -162,11 +162,8 @@ private function _get_datatables_query()
     public function exportar_datos(){
         $id_usuario = $this->session->userdata('id');
         $fields = $this->db->field_data('datos');
-        $query = "select * from datos d where d.id_usuario=$id_usuario order by id DESC";
-        $res = $this->db->query($query);
-       
-        $res = $this->db->get();
-        return array("fields" => $fields, "query" => $res);
+        $query = $this->db->select('*')->where('id_usuario',$id_usuario)->get('datos');
+        return array("fields" => $fields, "query" => $query);
     
     }
     

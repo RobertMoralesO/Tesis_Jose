@@ -5,7 +5,12 @@
 
 class Datos extends CI_Controller{
 
-   
+   public function __construct()
+	{
+		parent::__construct();
+		$this->load->helper('mysql_to_excel_helper');
+	}
+
 	public function index(){
 		
 		$data = $this->input->post('data');
@@ -57,7 +62,7 @@ class Datos extends CI_Controller{
 
 	}
 
-	public function exportar_datos($id)
+	public function exportar_datos()
 	{
 		$this->load->model('Datos_Model','DM');
 		to_excel($this->DM->exportar_datos(), "datos");
