@@ -5,6 +5,7 @@ class Datos_Model extends CI_Model {
  
     var $table = 'datos';
     var $order = array('id' => 'desc');
+    //var $id_usuario = $this->session->userdata('id');
  
     public function save($data)
     {
@@ -14,13 +15,14 @@ class Datos_Model extends CI_Model {
 
     public function last_humedad()
     {
-       $query ="select humedad_suelo from datos order by id DESC limit 1";
+        $id_usuario = $this->session->userdata('id');
+       $query ="select humedad_suelo from datos where id_usuario=$id_usuario order by id DESC limit 1";
 
      $res = $this->db->query($query);
 
 
      if($res->num_rows() > 0) {
-        
+        $id_usuario = $this->session->userdata('id');
      $resultado= $res->result("array");
         return $resultado[0]['humedad_suelo'];
     }
@@ -31,7 +33,8 @@ class Datos_Model extends CI_Model {
 
      public function get_humedad($limit){
 
-         $query = "select daux.humedad_suelo FROM (SELECT d.id, d.humedad_suelo from datos d order by id DESC limit $limit) daux ORDER BY id ASC";
+$id_usuario = $this->session->userdata('id');
+         $query = "select daux.humedad_suelo FROM (SELECT d.id, d.humedad_suelo from datos d where d.id_usuario=$id_usuario order by id DESC limit $limit) daux ORDER BY id ASC";
         $res = $this->db->query($query);
         $resultado = $res->result("array");
 
@@ -40,8 +43,8 @@ class Datos_Model extends CI_Model {
      }
 
      public function get_temperatura($limit){
-
-         $query = "select daux.temperatura_suelo FROM (SELECT d.id, d.temperatura_suelo from datos d order by id DESC limit $limit) daux ORDER BY id ASC";
+$id_usuario = $this->session->userdata('id');
+         $query = "select daux.temperatura_suelo FROM (SELECT d.id, d.temperatura_suelo from datos d where d.id_usuario=$id_usuario order by id DESC limit $limit) daux ORDER BY id ASC";
         $res = $this->db->query($query);
         $resultado = $res->result("array");
 
@@ -51,7 +54,8 @@ class Datos_Model extends CI_Model {
 
      public function last_temperatura()
     {
-       $query ="select temperatura_suelo from datos order by id DESC limit 1";
+        $id_usuario = $this->session->userdata('id');
+       $query ="select temperatura_suelo from datos where id_usuario=$id_usuario order by id DESC limit 1";
 
      $res = $this->db->query($query);
 
@@ -62,9 +66,9 @@ class Datos_Model extends CI_Model {
      }
 
      public function get_fecha_hora($limit){
-
+$id_usuario = $this->session->userdata('id');
         # $query = "select concat(daux.hora,' ',daux.fecha ) fecha_hora FROM (SELECT d.id, d.fecha, d.hora from datos d order by id DESC limit $limit) daux ORDER BY id ASC";
-        $query = "select daux.fecha fecha_hora FROM (SELECT d.id, d.fecha, d.hora from datos d order by id DESC limit $limit) daux ORDER BY id ASC";
+        $query = "select daux.fecha fecha_hora FROM (SELECT d.id, d.fecha, d.hora from datos d where d.id_usuario=$id_usuario order by id DESC limit $limit) daux ORDER BY id ASC";
         $res = $this->db->query($query);
         $resultado = $res->result("array");
 
